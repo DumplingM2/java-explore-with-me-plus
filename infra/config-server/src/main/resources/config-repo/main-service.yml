@@ -1,7 +1,5 @@
 server:
   port: 0
-  servlet:
-    context-path: /api
 
 spring:
   datasource:
@@ -36,4 +34,4 @@ eureka:
 
 # Stats service configuration
 stats-service:
-  id: stats-service
+  id: stats-server

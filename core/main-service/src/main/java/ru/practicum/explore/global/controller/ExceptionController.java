@@ -7,6 +7,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import ru.practicum.explore.common.dto.ApiError;
@@ -31,6 +32,7 @@ public class ExceptionController {
             BadRequestException.class,
             ConstraintViolationException.class,
             MethodArgumentNotValidException.class,
+            MissingServletRequestParameterException.class,
             MethodArgumentTypeMismatchException.class,
             BindException.class,
             IllegalArgumentException.class,

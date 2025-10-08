@@ -621,12 +621,17 @@ public class EventServiceImpl implements EventService {
     }
 
     private long fetchViews(String uri, boolean unique) {
-        String now = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-        String start = "2000-01-01 00:00:00";
-        return statsClient.getStats(start, now, List.of(uri), unique)
-                .stream()
-                .findFirst()
-                .map(StatDto::getHits)
-                .orElse(0L);
+        try {
+            String now = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+            String start = "2000-01-01 00:00:00";
+            return statsClient.getStats(start, now, List.of(uri), unique)
+                    .stream()
+                    .findFirst()
+                    .map(StatDto::getHits)
+                    .orElse(0L);
+        } catch (Exception e) {
+            log.warn("Cannot fetch views from stats service for uri {}: {}", uri, e.getMessage());
+            return 0L;
+        }
     }
 }
